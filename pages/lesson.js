@@ -12,33 +12,36 @@ import {
 } from '@mui/material';
 import { Container } from '@mui/system';
 import React, { useState } from 'react';
+import FileBase64 from 'react-file-base64';
 
 function lesson() {
   const [image, setImage] = useState(null);
-  const [createObjectURL, setCreateObjectURL] = useState(null);
+  const [show, setShow] = useState(false);
+  const [desc, setDesc] = useState(null);
+  const [category, setCategory] = useState('');
 
-  const uploadToClient = (event) => {
-    if (event.target.files && event.target.files[0]) {
-      const i = event.target.files[0];
-
-      setImage(i);
-      setCreateObjectURL(URL.createObjectURL(i));
-    }
+  const uploadToClient = function (File) {
+    var imageString = File.base64;
+    var comma = imageString.indexOf(',');
+    var newImageString = imageString.substring(comma + 1, imageString.length);
+    setImage(newImageString);
+    setShow(true);
   };
 
   const uploadToServer = async (event) => {
-    const body = new FormData();
-    body.append('file', image);
-    const response = await fetch('/api/file', {
-      method: 'POST',
-      body,
-    });
+    setDesc(desc);
+    setCategory(category);
+  };
+
+  const handleChange = function (e) {
+    setCategory(e.target.value);
+    console.log(category);
   };
 
   return (
     <div>
       <Typography variant='h3' sx={{ textAlign: 'center', margin: '2rem' }}>
-        Lesson
+        Learning
       </Typography>
 
       {/* Input Field */}
@@ -52,43 +55,53 @@ function lesson() {
       >
         <form>
           {/* Image Select */}
-          <img src={createObjectURL} />
-          <Box
-            hidden
-            sx={{
-              border: 'solid',
-              width: '15rem',
-              height: '15rem',
-            }}
-          ></Box>
-          <input type='file' name='myImage' onChange={uploadToClient} />
+          {show ? (
+            <Box
+              sx={{
+                border: 'solid',
+                width: '15rem',
+                height: '15rem',
+              }}
+            >
+              <img
+                src={`data:image/png;base64,${image}`}
+                style={{ width: '15rem', height: '15rem', objectFit: 'cover' }}
+              />
+            </Box>
+          ) : (
+            ''
+          )}
+          <FileBase64
+            name='myImage'
+            onDone={uploadToClient.bind(this)}
+          ></FileBase64>
           <br />
 
           {/* Description */}
           <TextField
             required
-            label='Write the description'
+            label='Description'
             sx={{
               display: 'block',
               marginTop: '2rem',
             }}
-          ></TextField>
+          >
+            {desc}
+          </TextField>
 
           {/* Category Select */}
           <FormControl sx={{ width: '15rem', marginY: '3rem' }}>
-            <InputLabel id='demo-simple-select-label'>
-              Categodfdfries
-            </InputLabel>
+            <InputLabel id='demo-simple-select-label'>Category</InputLabel>
             <Select
-            // labelId='demo-simple-select-label'
-            // id='demo-simple-select'
-            // value={category}
-            // label='Cagetory'
-            // onChange={handleChange}
+              // labelId='demo-simple-select-label'
+              // id='demo-simple-select'
+              value={category}
+              label='Cagetory'
+              onChange={handleChange}
             >
-              <MenuItem value={10}>English</MenuItem>
-              <MenuItem value={20}>Math</MenuItem>
-              <MenuItem value={30}>Korean</MenuItem>
+              <MenuItem value='English'>English</MenuItem>
+              <MenuItem value='Math'>Math</MenuItem>
+              <MenuItem value='Korean'>Korean</MenuItem>
             </Select>
           </FormControl>
           <Button
