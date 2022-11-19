@@ -14,7 +14,7 @@ import { Container } from '@mui/system';
 import React, { useState } from 'react';
 import FileBase64 from 'react-file-base64';
 
-function lesson() {
+function lesson(props) {
   const [image, setImage] = useState(null);
   const [show, setShow] = useState(false);
   const [desc, setDesc] = useState(null);
@@ -36,6 +36,22 @@ function lesson() {
   const handleChange = function (e) {
     setCategory(e.target.value);
     console.log(category);
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    axios
+      .post('https://hackathon-backend.azurewebsites.net/createLearning', {
+        image: image,
+        description: desc,
+        lessonID: props.id,
+      })
+      .then((response) => {
+        refresh;
+      })
+      .catch((e) => {
+        console.log(e);
+      });
   };
 
   return (
