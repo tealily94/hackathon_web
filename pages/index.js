@@ -5,14 +5,15 @@ import Link from "next/link";
 import TextField from "@mui/material/TextField";
 import { useState } from "react";
 import axios from "axios";
-import { Route, Routes } from "react-router-dom";
+import { useRouter } from "next/router";
 import main from "./main";
 
 export default function Home() {
   const [title, setTitle] = useState("");
   const [category, setCategory] = useState("");
   const baseUrl = "https://hackathon-backend.azurewebsites.net/createLesson";
-
+  const [lesson, setLesson] = useState("");
+  const router = useRouter();
   const handleSubmit = (e) => {
     axios
       .post(baseUrl, {
@@ -20,8 +21,12 @@ export default function Home() {
         category: category,
       })
       .then((response) => {
-        console.log(`create/${response.data}`);
+        return setLesson(response.data);
       })
+      .then((response) => {
+        router.push(`create/${lesson}`);
+      })
+
       .catch((e) => {
         console.log(e);
       });
@@ -54,10 +59,6 @@ export default function Home() {
           </div>
         </form>
       </Stack>
-      <Routes>
-        <Route path={"main"} element={<main />}></Route>
-      </Routes>
-      ;
     </div>
   );
 }
