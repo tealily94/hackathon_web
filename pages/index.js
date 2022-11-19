@@ -16,9 +16,19 @@ export default function Home() {
           What do you want to Upload?
         </Typography>
         <Stack direction="row" spacing={2}>
-          <Button variant="outlined">Quiz</Button>
+          <Button
+            variant="outlined"
+            style={{ padding: "10em 15em", borderRadius: "15px" }}
+          >
+            Quiz
+          </Button>
           <Link href="lesson">
-            <Button variant="outlined">Lesson</Button>
+            <Button
+              variant="outlined"
+              style={{ padding: "10em 15em", borderRadius: "15px" }}
+            >
+              Lesson
+            </Button>
           </Link>
         </Stack>
       </Stack>
