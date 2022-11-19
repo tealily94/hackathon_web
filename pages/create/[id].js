@@ -26,7 +26,7 @@ function create() {
             >
               Quiz
             </Button>
-            <Link href="lesson">
+            <Link href={`lesson/${router.query.id}`}>
               <Button
                 variant="outlined"
                 style={{ padding: "10em 15em", borderRadius: "15px" }}
