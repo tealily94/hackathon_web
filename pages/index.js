@@ -12,19 +12,20 @@ export default function Home() {
   const [title, setTitle] = useState("");
   const [category, setCategory] = useState("");
   const baseUrl = "https://hackathon-backend.azurewebsites.net/createLesson";
-  const [lesson, setLesson] = useState("");
+  const [lesson, setLesson] = useState(0);
   const router = useRouter();
   const handleSubmit = (e) => {
+    e.preventDefault();
     axios
       .post(baseUrl, {
         title: title,
         category: category,
       })
       .then((response) => {
-        return setLesson(response.data);
+        return response.data;
       })
-      .then((response) => {
-        router.push(`create/${lesson}`);
+      .then((data) => {
+        router.push({ pathname: `create/${data}`, query: `${data}` });
       })
 
       .catch((e) => {
