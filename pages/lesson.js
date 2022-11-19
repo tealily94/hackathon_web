@@ -11,34 +11,71 @@ import {
   Typography,
 } from '@mui/material';
 import { Container } from '@mui/system';
-import React from 'react';
+import React, { useState } from 'react';
 
 function lesson() {
+  const [image, setImage] = useState(null);
+  const [createObjectURL, setCreateObjectURL] = useState(null);
+
+  const uploadToClient = (event) => {
+    if (event.target.files && event.target.files[0]) {
+      const i = event.target.files[0];
+
+      setImage(i);
+      setCreateObjectURL(URL.createObjectURL(i));
+    }
+  };
+
+  const uploadToServer = async (event) => {
+    const body = new FormData();
+    body.append('file', image);
+    const response = await fetch('/api/file', {
+      method: 'POST',
+      body,
+    });
+  };
+
   return (
     <div>
-      <Typography variant='h3' sx={{ textAlign: 'center' }}>
+      <Typography variant='h3' sx={{ textAlign: 'center', margin: '2rem' }}>
         Lesson
       </Typography>
-      <Container sx={{ marginTop: '3rem' }}>
+
+      {/* Input Field */}
+      <Container
+        sx={{
+          marginTop: '3rem',
+          display: 'flex',
+          justifyContent: 'center',
+          alignItems: 'center',
+        }}
+      >
         <form>
-          <FormLabel>Image</FormLabel>
+          {/* Image Select */}
+          <img src={createObjectURL} />
           <Box
+            hidden
             sx={{
               border: 'solid',
               width: '15rem',
               height: '15rem',
             }}
           ></Box>
-          <Button>upload an image</Button>
+          <input type='file' name='myImage' onChange={uploadToClient} />
           <br />
-          <FormLabel>Description</FormLabel>
+
+          {/* Description */}
           <TextField
             required
-            size='medium'
-            placeholder='Write the description'
-            sx={{ display: 'block' }}
+            label='Write the description'
+            sx={{
+              display: 'block',
+              marginTop: '2rem',
+            }}
           ></TextField>
-          <FormControl sx={{ width: '15rem' }}>
+
+          {/* Category Select */}
+          <FormControl sx={{ width: '15rem', marginTop: '3rem' }}>
             <InputLabel id='demo-simple-select-label'>
               Categodfdfries
             </InputLabel>
@@ -55,7 +92,7 @@ function lesson() {
             </Select>
           </FormControl>
 
-          <Button>Submit</Button>
+          <Button sx={{ display: 'block' }}>Submit</Button>
         </form>
       </Container>
     </div>
