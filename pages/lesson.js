@@ -75,7 +75,7 @@ function lesson() {
           ></TextField>
 
           {/* Category Select */}
-          <FormControl sx={{ width: '15rem', marginTop: '3rem' }}>
+          <FormControl sx={{ width: '15rem', marginY: '3rem' }}>
             <InputLabel id='demo-simple-select-label'>
               Categodfdfries
             </InputLabel>
@@ -91,8 +91,13 @@ function lesson() {
               <MenuItem value={30}>Korean</MenuItem>
             </Select>
           </FormControl>
-
-          <Button sx={{ display: 'block' }}>Submit</Button>
+          <Button
+            type='submit'
+            onClick={uploadToServer}
+            style={{ display: 'block' }}
+          >
+            Submit
+          </Button>
         </form>
       </Container>
     </div>
