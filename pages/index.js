@@ -6,7 +6,6 @@ import TextField from '@mui/material/TextField';
 import { useState } from 'react';
 import axios from 'axios';
 import { useRouter } from 'next/router';
-import main from './main';
 import { FormControl, InputLabel, Select, MenuItem } from '@mui/material';
 
 export default function Home() {
@@ -59,10 +58,11 @@ export default function Home() {
                 justifyContent: 'center',
                 alignItems: 'center',
                 marginBottom: '1rem',
+                width: '100%',
               }}
             >
               <TextField
-                sx={{ display: 'inline-block', marginX: '1rem' }}
+                sx={{ display: 'inline-block', marginX: '1rem', width: '100%' }}
                 id='outlined-basic'
                 label='Title'
                 variant='outlined'
