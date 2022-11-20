@@ -138,14 +138,17 @@ function Quiz() {
 
             <Box
               sx={{
-                width: { xs: '70%', md: '100%' },
                 marginTop: '2rem',
+                marginX: 'auto',
+                textAlign: 'center',
+                display: 'flex',
+                justifyContent: 'center',
+                alignItems: 'center',
               }}
             >
               <Grid
                 container
-                rowSpacing={2}
-                columnSpacing={{ xs: 1, md: 3 }}
+                rowSpacing={5}
                 sx={{
                   display: 'flex',
                   justifyContent: 'center',
@@ -347,17 +350,6 @@ function Quiz() {
                 </Grid>
               </Grid>
             </Box>
-            {/* <TextField
-              required
-              label='Answer'
-              sx={{
-                display: 'block',
-                marginTop: '2rem',
-              }}
-              onChange={handleChangeAnswer}
-            >
-              {answer}
-            </TextField> */}
             <Button
               type='submit'
               onClick={handleSubmit}
