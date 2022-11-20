@@ -41,7 +41,10 @@ export default function Home() {
     <div>
       <Stack spacing={2}>
         {/* Home Page Title */}
-        <Typography variant='h2' sx={{ textAlign: 'center', marginY: '1rem' }}>
+        <Typography
+          variant='h2'
+          sx={{ textAlign: 'center', marginTop: '5rem' }}
+        >
           Welcome to the Infinite Classroom
         </Typography>
         {/* Create A Lesson Form */}
