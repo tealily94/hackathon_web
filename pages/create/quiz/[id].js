@@ -5,7 +5,7 @@ import FileBase64 from "react-file-base64";
 import axios from "axios";
 import { useRouter } from "next/router";
 
-function quiz() {
+function Quiz() {
   const router = useRouter();
   const [question, setQuestion] = useState("");
   const [image1, setImage1] = useState("");
@@ -385,4 +385,4 @@ function quiz() {
   );
 }
 
-export default quiz;
+export default Quiz;
