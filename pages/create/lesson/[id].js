@@ -20,7 +20,7 @@ function Lesson() {
   const router = useRouter();
   const [image, setImage] = useState(null);
   const [show, setShow] = useState(false);
-  const [desc, setDesc] = useState("");
+  const [desc, setDesc] = useState(null);
   const [category, setCategory] = useState("");
 
   const uploadToClient = function (File) {
@@ -93,7 +93,7 @@ function Lesson() {
             required
             label="Description"
             sx={{ marginTop: "2rem", width: "100%" }}
-            onchange={uploadToServer}
+            onChange={uploadToServer}
           >
             {desc}
           </TextField>
