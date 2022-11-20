@@ -34,7 +34,7 @@ function Create() {
                 variant="outlined"
                 style={{ padding: "2em 7em", borderRadius: "15px" }}
               >
-                <h1>Lesson</h1>
+                <h1>Learning</h1>
               </Button>
             </Link>
           </Stack>

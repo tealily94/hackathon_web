@@ -20,7 +20,7 @@ function Lesson() {
   const router = useRouter();
   const [image, setImage] = useState(null);
   const [show, setShow] = useState(false);
-  const [desc, setDesc] = useState(null);
+  const [desc, setDesc] = useState("");
   const [category, setCategory] = useState("");
 
   const uploadToClient = function (File) {
@@ -31,13 +31,8 @@ function Lesson() {
     setShow(true);
   };
 
-  const uploadToServer = async (event) => {
-    setDesc(desc);
-    setCategory(category);
-  };
-
-  const handleChange = function (e) {
-    setCategory(e.target.value);
+  const uploadToServer = function (e) {
+    setDesc(e.target.value);
     console.log(category);
   };
 
@@ -98,6 +93,7 @@ function Lesson() {
             required
             label="Description"
             sx={{ marginTop: "2rem", width: "100%" }}
+            onchange={uploadToServer}
           >
             {desc}
           </TextField>
