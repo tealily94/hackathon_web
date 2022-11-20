@@ -15,6 +15,7 @@ function create() {
                     justifyContent="center"
                     alignItems="center"
                     style={{ height: "100vh" }}
+                    marginTop="-2%"
                 >
                     <Typography variant="h1" component="div" gutterBottom>
                         What do you want to Upload?
@@ -22,18 +23,18 @@ function create() {
                     <Stack direction="row" spacing={2}>
                         <Link href={`quiz/${router.query.id}`}>
                             <Button
-                                variant="outlined"
-                                style={{ padding: "10em 15em", borderRadius: "15px" }}
+                                variant="contained"
+                                style={{ padding: "2em 7em", borderRadius: "15px" }}
                             >
-                                Quiz
+                                <h1>Quiz</h1>
                             </Button>
                         </Link>
                         <Link href={`lesson/${router.query.id}`}>
                             <Button
                                 variant="outlined"
-                                style={{ padding: "10em 15em", borderRadius: "15px" }}
+                                style={{ padding: "2em 7em", borderRadius: "15px" }}
                             >
-                                Lesson
+                                <h1>Lesson</h1>
                             </Button>
                         </Link>
                     </Stack>
